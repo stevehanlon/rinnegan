@@ -1,0 +1,23 @@
+        case "$host_os" in
+        *linux*)
+        if test x"${sh_use_lcaps}" = xyes
+        then
+            echo
+            echo "Using Linux capabilities to drop unnecessary root capabilities."
+            echo "Please make sure that directories used for writing have write permission"
+            echo "for root, because root will be a mere mortal in that respect:"
+            echo "  Baseline database in: ${mydataroot}"
+            echo "  Logfile in:           ${localstatedir}/log"
+            echo "  PID file in:          ${localstatedir}/run"
+            echo "(directories not existent yet will be created upon installation, root-owned"
+            echo "if make install is executed by root.)"
+            echo
+        fi
+        if test x"${sh_use_lcaps}" = xno
+        then
+            echo
+            echo "Not using Linux capabilities (capability.h or libcap not found)"
+            echo
+        fi
+        ;;
+        esac
